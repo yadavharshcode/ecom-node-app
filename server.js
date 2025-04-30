@@ -9,7 +9,7 @@ const path = require('path');
 
 
 const { connectMySQL } = require('./config/database');
-const { connectCosmosDB } = require('./config/database');
+// const { connectCosmosDB } = require('./config/database');
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
 const authRoutes = require('./routes/auth.route');
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Database Connections
 connectMySQL();
-connectCosmosDB();
+// connectCosmosDB();
 
 // API Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

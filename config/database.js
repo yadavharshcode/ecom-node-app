@@ -27,31 +27,33 @@ const connectMySQL = async () => {
   }
 };
 
-const connectCosmosDB = async () => {
-  try {
-    cosmosClient = new CosmosClient({
-      endpoint: process.env.COSMOS_ENDPOINT,
-      key: process.env.COSMOS_KEY
-    });
+// const connectCosmosDB = async () => {
+//   try {
+//     cosmosClient = new CosmosClient({
+//       endpoint: process.env.COSMOS_ENDPOINT,
+//       key: process.env.COSMOS_KEY
+//     });
 
-    const { database } = await cosmosClient.databases.createIfNotExists({
-      id: process.env.COSMOS_DATABASE
-    });
+//     const { database } = await cosmosClient.databases.createIfNotExists({
+//       id: process.env.COSMOS_DATABASE
+//     });
 
-    cosmosDatabase = database;
-    console.log('Cosmos DB connected successfully');
-  } catch (error) {
-    console.error('Cosmos DB connection error:', error);
-    process.exit(1);
-  }
-};
+//     cosmosDatabase = database;
+//     console.log('Cosmos DB connected successfully');
+//   } catch (error) {
+//     console.error('Cosmos DB connection error:', error);
+//     process.exit(1);
+//   }
+// };
+
+// const getCosmosDB = () => cosmosDatabase;
 
 const getMySQLPool = () => mysqlPool;
-const getCosmosDB = () => cosmosDatabase;
+
 
 module.exports = {
   connectMySQL,
-  connectCosmosDB,
+  // connectCosmosDB,
   getMySQLPool,
-  getCosmosDB
+  // getCosmosDB
 };
