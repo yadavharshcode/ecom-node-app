@@ -9,10 +9,10 @@ let cosmosDatabase;
 const connectMySQL = async () => {
   try {
     mysqlPool = mysql.createPool({
-      host: process.env.MYSQL_HOST || "localhost",
+      host: process.env.MYSQL_HOST,
       port: process.env.MYSQL_PORT,
-      user: process.env.MYSQL_USER  || "root",
-      password: process.env.MYSQL_PASSWORD || "password",
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       waitForConnections: true,
       connectionLimit: 10,
