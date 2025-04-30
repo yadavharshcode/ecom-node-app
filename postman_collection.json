@@ -1,0 +1,388 @@
+{
+    "info": {
+      "_postman_id": "ecom-enterprise-collection",
+      "name": "E-Commerce Enterprise API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": "Complete API collection for E-Commerce Enterprise Application"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "item": [
+          {
+            "name": "Register User",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"role\": \"customer\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/register",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "register"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Login User",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/login",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "login"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Refresh Token",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"refreshToken\": \"{{refresh_token}}\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/refresh-token",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "refresh-token"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get User Profile",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/auth/profile",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "profile"]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Users",
+        "item": [
+          {
+            "name": "Get All Users (Admin Only)",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/users?page=1&limit=10",
+                "host": ["{{base_url}}"],
+                "path": ["users"],
+                "query": [
+                  {
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "key": "limit",
+                    "value": "10"
+                  }
+                ]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Products",
+        "item": [
+          {
+            "name": "Create Product (Admin Only)",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Premium Headphones\",\n    \"description\": \"Noise cancelling wireless headphones\",\n    \"price\": 299.99,\n    \"stock\": 50\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/products",
+                "host": ["{{base_url}}"],
+                "path": ["products"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get All Products",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/products?page=1&limit=10",
+                "host": ["{{base_url}}"],
+                "path": ["products"],
+                "query": [
+                  {
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "key": "limit",
+                    "value": "10"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get Product by ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/products/1",
+                "host": ["{{base_url}}"],
+                "path": ["products", "1"]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Orders",
+        "item": [
+          {
+            "name": "Create Order",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 2\n        }\n    ]\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/orders",
+                "host": ["{{base_url}}"],
+                "path": ["orders"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get User Orders",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/orders?page=1&limit=10",
+                "host": ["{{base_url}}"],
+                "path": ["orders"],
+                "query": [
+                  {
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "key": "limit",
+                    "value": "10"
+                  }
+                ]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Cart",
+        "item": [
+          {
+            "name": "Update Cart",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 3\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 1\n        }\n    ]\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/cart",
+                "host": ["{{base_url}}"],
+                "path": ["cart"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get Cart",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{access_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/cart",
+                "host": ["{{base_url}}"],
+                "path": ["cart"]
+              }
+            },
+            "response": []
+          }
+        ]
+      }
+    ],
+    "variable": [
+      {
+        "key": "base_url",
+        "value": "http://localhost:3000/api",
+        "description": "Base URL for API requests"
+      },
+      {
+        "key": "access_token",
+        "value": "",
+        "description": "JWT Access Token from login/register"
+      },
+      {
+        "key": "refresh_token",
+        "value": "",
+        "description": "JWT Refresh Token from login/register"
+      }
+    ],
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"Status code is 200\", function () {",
+            "    pm.response.to.have.status(200);",
+            "});",
+            "",
+            "// For successful auth requests, store tokens",
+            "if (pm.response.code === 200 && pm.request.url.path.includes('auth')) {",
+            "    const response = pm.response.json();",
+            "    if (response.data.accessToken) {",
+            "        pm.collectionVariables.set('access_token', response.data.accessToken);",
+            "    }",
+            "    if (response.data.refreshToken) {",
+            "        pm.collectionVariables.set('refresh_token', response.data.refreshToken);",
+            "    }",
+            "}"
+          ]
+        }
+      }
+    ],
+    "auth": null
+  }
