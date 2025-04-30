@@ -49,7 +49,7 @@ app.get('/health', (req, res) => {
 // Error Handling Middleware
 app.use(errorMiddleware);
 
-const PORT = process.env.PORT || 4040;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
