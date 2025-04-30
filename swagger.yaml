@@ -4,7 +4,7 @@ info:
   description: Enterprise E-Commerce API with Node.js, MySQL and Cosmos DB
   version: 1.0.0
 servers:
-  - url: nodeecomapp.azurewebsites.net/api
+  - url: http://localhost:3001/api
     description: Local server
 tags:
   - name: Auth
